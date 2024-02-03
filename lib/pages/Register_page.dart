@@ -373,7 +373,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/HomePage');
+                            },
                             child: FadeInUp(
                                 delay: const Duration(milliseconds: 700),
                                 duration: const Duration(milliseconds: 800),
