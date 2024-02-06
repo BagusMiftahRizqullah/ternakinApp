@@ -41,7 +41,7 @@ class _HomePage extends State<HomePage> {
     "C#",
     "Flutter",
     "Python",
-    "React Vative",
+    "ReactNative",
   ];
 
   @override
@@ -52,7 +52,7 @@ class _HomePage extends State<HomePage> {
           Container(
             padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
             decoration: BoxDecoration(
-                color: Color.fromRGBO(67, 147, 108, 1),
+                color: Color.fromRGBO(0, 170, 19, 1),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20))),
@@ -72,16 +72,6 @@ class _HomePage extends State<HomePage> {
                 ),
                 SizedBox(
                   height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 3, bottom: 15),
-                  child: Text("Hi, Wisnu",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 1,
-                          wordSpacing: 2,
-                          color: Colors.white)),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 20),
@@ -121,8 +111,8 @@ class _HomePage extends State<HomePage> {
                       return Column(
                         children: [
                           Container(
-                            height: 60,
-                            width: 60,
+                            height: 42,
+                            width: 42,
                             decoration: BoxDecoration(
                                 color: animalColors[index],
                                 shape: BoxShape.circle),
@@ -136,7 +126,7 @@ class _HomePage extends State<HomePage> {
                           Text(
                             menuNames[index],
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                               color: Colors.black.withOpacity(0.6),
                             ),
@@ -145,8 +135,10 @@ class _HomePage extends State<HomePage> {
                       );
                     },
                   ),
+
+                  // TITIP TERNAK
                   SizedBox(
-                    height: 18,
+                    height: 12,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,12 +146,12 @@ class _HomePage extends State<HomePage> {
                       Text(
                         "Titip Ternak",
                         style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.w600),
+                            fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                       Text(
                         "See All",
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(67, 147, 108, 1),
                         ),
@@ -205,7 +197,7 @@ class _HomePage extends State<HomePage> {
                                 Text(
                                   imglist[index],
                                   style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black.withOpacity(0.6),
                                   ),
@@ -229,17 +221,13 @@ class _HomePage extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 32,
+        iconSize: 28,
         selectedItemColor: Color.fromRGBO(67, 147, 108, 1),
-        selectedFontSize: 18,
         unselectedItemColor: Colors.grey,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.assessment), label: "Course"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: "Wishlist"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.assessment), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
         ],
       ),
     );

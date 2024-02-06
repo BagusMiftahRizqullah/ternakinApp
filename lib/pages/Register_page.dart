@@ -156,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           boxShadow: [
                             if (isFocusedFirstName)
                               BoxShadow(
-                                  color: Color.fromRGBO(67, 147, 108, 1)
+                                  color: Color.fromRGBO(0, 170, 19, 1)
                                       .withOpacity(.3),
                                   blurRadius: 4.0,
                                   spreadRadius: 2.0
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           boxShadow: [
                             if (isFocusedSecondName)
                               BoxShadow(
-                                  color: Color.fromRGBO(67, 147, 108, 1)
+                                  color: Color.fromRGBO(0, 170, 19, 1)
                                       .withOpacity(.3),
                                   blurRadius: 4.0,
                                   spreadRadius: 2.0
@@ -250,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           boxShadow: [
                             if (isFocusedNoTelephone)
                               BoxShadow(
-                                  color: Color.fromRGBO(67, 147, 108, 1)
+                                  color: Color.fromRGBO(0, 170, 19, 1)
                                       .withOpacity(.3),
                                   blurRadius: 4.0,
                                   spreadRadius: 2.0
@@ -296,7 +296,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   //         boxShadow: [
                   //           if (isFocusedEmail)
                   //             BoxShadow(
-                  //                 color:  Color.fromRGBO(67, 147, 108, 1).withOpacity(.3),
+                  //                 color:   Color.fromRGBO(0, 170, 19, 1).withOpacity(.3),
                   //                 blurRadius: 4.0,
                   //                 spreadRadius: 2.0
                   //                 // Glow Color
@@ -341,7 +341,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   //         boxShadow: [
                   //           if (isFocusedPassword)
                   //             BoxShadow(
-                  //                 color: Color.fromRGBO(67, 147, 108, 1)
+                  //                 color:  Color.fromRGBO(0, 170, 19, 1)
                   //                     .withOpacity(.3),
                   //                 blurRadius: 4.0,
                   //                 spreadRadius: 2.0
@@ -386,8 +386,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: 'Satoshi'),
-                                backgroundColor:
-                                    Color.fromRGBO(67, 147, 108, 1),
+                                backgroundColor: Color.fromRGBO(0, 170, 19, 1),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -418,7 +417,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: const Text(
                               'Sign In',
                               style: TextStyle(
-                                color: Color.fromRGBO(67, 147, 108, 1),
+                                color: Color.fromRGBO(0, 170, 19, 1),
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),

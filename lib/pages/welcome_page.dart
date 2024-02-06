@@ -11,17 +11,22 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  @override
-  // void initState() {
-  //   super.initState();
-  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  late PageController _pageController;
+  int _pageIndex = 0;
 
-  //   // navigate to home
-  //   // navigateToHome();
-  // }
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (contex) => const LoginPage()));
   }
@@ -35,107 +40,153 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Stack(children: [
-            Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.6,
-                  decoration: BoxDecoration(color: Colors.white),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.6,
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(67, 147, 108, 1),
-                    borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(70)),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      "images/ternakin_logo.png",
-                      scale: 0.8,
-                      height: 200,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.000,
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(67, 147, 108, 1),
+    return Scaffold(
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                itemCount: welcome_data.length,
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _pageIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) => WelcomeConten(
+                  image: welcome_data[index].image,
+                  title: welcome_data[index].title,
+                  description: welcome_data[index].description,
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2.888,
-                  padding: EdgeInsets.only(left: 40, right: 30),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(70))),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 23,
-                      ),
-                      Text(
-                        "Yuk Titip Hewan Ternak",
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1,
-                            wordSpacing: 2),
-                      ),
-                      SizedBox(
-                        height: 42,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text(
-                          "Mari membeli ternakmu sekarang dan percayakan pada kami",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.black.withOpacity(0.6)),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      Material(
-                          color: Color.fromRGBO(67, 147, 108, 1),
-                          borderRadius: BorderRadius.circular(10),
-                          child: InkWell(
-                            onTap: () {
-                              navigateToHome();
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 80),
-                              child: Text("Get Started",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1)),
-                            ),
-                          ))
-                    ],
-                  )),
+            Row(
+              children: [
+                ...List.generate(
+                    welcome_data.length,
+                    (index) => Padding(
+                          padding: const EdgeInsets.only(right: 4),
+                          child: DotIndicator(
+                            isActive: index == _pageIndex,
+                          ),
+                        )),
+                const Spacer(),
+                SizedBox(
+                  height: 60,
+                  width: 60,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                      if (_pageIndex == welcome_data.length - 1) {
+                        navigateToHome();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        backgroundColor: Color.fromRGBO(0, 170, 19, 1)),
+                    child: Icon(Icons.arrow_forward,
+                        color: Color.fromRGBO(238, 240, 238, 1), size: 30),
+                  ),
+                ),
+              ],
             ),
-          ])),
+            // SizedBox(
+            //   height: 88,
+            // ),
+          ],
+        ),
+      )),
+    );
+  }
+}
+
+class DotIndicator extends StatelessWidget {
+  const DotIndicator({super.key, this.isActive = false});
+
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        height: isActive ? 12 : 4,
+        width: 4,
+        decoration: BoxDecoration(
+            color: isActive
+                ? Color.fromRGBO(0, 170, 19, 1)
+                : Colors.grey.withOpacity(0.4),
+            borderRadius: const BorderRadius.all(Radius.circular(10))));
+  }
+}
+
+class Welcome {
+  final String image, title, description;
+
+  Welcome(
+      {required this.image, required this.title, required this.description});
+}
+
+final List<Welcome> welcome_data = [
+  Welcome(
+    image: "images/ternakin_logo.png",
+    title: "Mari membeli ternak sekarang dan percayakan pada kami",
+    description:
+        "Disini kamu akan menemukan pelayanan yang ramah dan amanah sesuai dengan kebutuhanmu.",
+  ),
+  Welcome(
+    image: "images/Flutter.png",
+    title: "Jual ternak kamu pada marketplace kami",
+    description:
+        "Disini kamu akan menemukan pelayanan yang ramah dan amanah sesuai dengan syariiat islam.",
+  ),
+  Welcome(
+    image: "images/Python.png",
+    title: "Dapatkan update ternakmu secara realtime",
+    description: "Disini kamu akan mendapatkan daily report dari ternakmu.",
+  ),
+];
+
+class WelcomeConten extends StatelessWidget {
+  const WelcomeConten({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.description,
+  });
+
+  final String image, title, description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Spacer(),
+        Image.asset(
+          image,
+          height: 210,
+        ),
+        const Spacer(),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(
+          height: 18,
+        ),
+        Text(
+          description,
+          textAlign: TextAlign.center,
+        ),
+        const Spacer(),
+      ],
     );
   }
 }

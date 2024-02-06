@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                           boxShadow: [
                             if (isFocusedPassword)
                               BoxShadow(
-                                  color: Color.fromRGBO(67, 147, 108, 1)
+                                  color: Color.fromRGBO(0, 170, 19, 1)
                                       .withOpacity(.3),
                                   blurRadius: 4.0,
                                   spreadRadius: 2.0
@@ -217,8 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: 'Satoshi'),
-                                backgroundColor:
-                                    Color.fromRGBO(67, 147, 108, 1),
+                                backgroundColor: Color.fromRGBO(0, 170, 19, 1),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -249,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Text(
                               'Sign Up',
                               style: TextStyle(
-                                color: Color.fromRGBO(67, 147, 108, 1),
+                                color: Color.fromRGBO(0, 170, 19, 1),
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
