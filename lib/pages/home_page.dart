@@ -135,7 +135,15 @@ class _HomePage extends State<HomePage> {
                       );
                     },
                   ),
-
+                  Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(0, 170, 19, 1),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20))),
+                      child: Column(children: [])),
                   // TITIP TERNAK
                   SizedBox(
                     height: 12,
