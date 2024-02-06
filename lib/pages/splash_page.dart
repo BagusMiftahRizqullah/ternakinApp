@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
             height: 23,
           ),
           Text(
-            "Ternakin.co.id",
+            "rajakandang.com",
             style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
