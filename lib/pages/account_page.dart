@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ternakin/pages/bottom_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AccountPage extends StatefulWidget {
+  const AccountPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<AccountPage> createState() => _AccountPage();
 }
 
-class _HomePage extends State<HomePage> {
+class _AccountPage extends State<AccountPage> {
   List menuNames = [
     "Titipin Ternak",
     "Daging Sapi",
@@ -44,6 +44,14 @@ class _HomePage extends State<HomePage> {
     "Python",
     "ReactNative",
   ];
+
+  int _selectedIndex = 0; //New
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

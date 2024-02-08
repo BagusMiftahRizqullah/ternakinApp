@@ -205,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/HomePage');
+                              Navigator.of(context).pushNamed('/BottomPage');
                             },
                             child: FadeInUp(
                                 delay: const Duration(milliseconds: 700),

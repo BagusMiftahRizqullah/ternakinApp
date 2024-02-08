@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ternakin/pages/bottom_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class OrderPage extends StatefulWidget {
+  const OrderPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<OrderPage> createState() => _OrderPage();
 }
 
-class _HomePage extends State<HomePage> {
+class _OrderPage extends State<OrderPage> {
   List menuNames = [
     "Titipin Ternak",
     "Daging Sapi",
@@ -238,6 +237,16 @@ class _HomePage extends State<HomePage> {
                   ),
                 ],
               ))
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 28,
+        selectedItemColor: Color.fromRGBO(67, 147, 108, 1),
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.assessment), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
         ],
       ),
     );
