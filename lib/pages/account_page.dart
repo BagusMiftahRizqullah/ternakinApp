@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ternakin/pages/bottom_page.dart';
+import 'package:ternakin/widgets/bottom_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});

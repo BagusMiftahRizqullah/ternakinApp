@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ternakin/pages/bottom_page.dart';
+import 'package:ternakin/widgets/bottom_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,7 +51,7 @@ class _HomePage extends State<HomePage> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
+            padding: EdgeInsets.only(top: 32, left: 15, right: 15, bottom: 10),
             decoration: BoxDecoration(
                 color: Color.fromRGBO(0, 170, 19, 1),
                 borderRadius: BorderRadius.only(

@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import 'package:ternakin/pages/Login_page.dart';
 import 'package:ternakin/pages/Order_page.dart';
 import 'package:ternakin/pages/Register_page.dart';
-import 'package:ternakin/pages/bottom_page.dart';
+import 'package:ternakin/widgets/bottom_page.dart';
 import 'package:ternakin/pages/home_page.dart';
 import 'package:ternakin/pages/splash_page.dart';
 import 'package:ternakin/pages/welcome_page.dart';
