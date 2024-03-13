@@ -9,7 +9,7 @@ import 'package:sizer/sizer.dart';
 import 'package:ternakin/models/post.dart';
 import 'package:ternakin/pages/Register_page.dart';
 import 'package:http/http.dart' as http;
-import 'package:ternakin/controllers/login_controller.dart';
+import 'package:ternakin/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   var focusNodePassword = FocusNode();
   bool isFocusedEmail = false;
   bool isFocusedPassword = false;
-  LoginController loginController = Get.put(LoginController());
+  AuthController authController = Get.put(AuthController());
 
   Future<Post>? post;
 
@@ -48,21 +48,21 @@ class _LoginPageState extends State<LoginPage> {
   //   login();
   // }
 
-  Future<void> login() async {
-    var headers = {'Content-Type': 'application/json'};
-    try {
-      Map body = {'email': "test@mail.com", 'password': "12345789"};
-      print(body);
+  // Future<void> login() async {
+  //   var headers = {'Content-Type': 'application/json'};
+  //   try {
+  //     Map body = {'email': "test@mail.com", 'password': "12345789"};
+  //     print(body);
 
-      http.Response response = await http.post(
-          Uri.parse('https://reqres.in/api/v1/auth/login'),
-          body: jsonEncode(body),
-          headers: headers);
-      print(response.body);
-    } catch (e) {
-      print(e);
-    }
-  }
+  //     http.Response response = await http.post(
+  //         Uri.parse('https://reqres.in/api/v1/auth/login'),
+  //         body: jsonEncode(body),
+  //         headers: headers);
+  //     print(response.body);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                                   )
                           ]),
                       child: TextField(
-                        controller: loginController.emailController,
+                        controller: authController.emailController,
                         style: TextStyle(fontWeight: FontWeight.w500),
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: 'Your Email'),
@@ -211,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                           ]),
                       child: TextField(
                         style: const TextStyle(fontWeight: FontWeight.w500),
-                        controller: loginController.passwordController,
+                        controller: authController.passwordController,
                         decoration: InputDecoration(
                             suffixIcon: Icon(
                               Icons.visibility_off_outlined,
@@ -236,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              loginController.loginWithEmail();
+                              authController.loginWithEmail();
 
                               // Navigator.of(context).pushNamed('/BottomPage');
                             },

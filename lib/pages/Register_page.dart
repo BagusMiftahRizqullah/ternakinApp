@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
+import 'package:ternakin/controllers/auth_controller.dart';
+import 'package:get/get.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -24,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isFocusedFirstName = false;
   bool isFocusedSecondName = false;
   bool isFocusedNoTelephone = false;
+  AuthController authController = Get.put(AuthController());
 
   @override
   void initState() {
@@ -165,6 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ]),
                       child: TextField(
                         style: TextStyle(fontWeight: FontWeight.w500),
+                        controller: authController.fnameController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Your First Name'),
@@ -212,6 +217,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ]),
                       child: TextField(
                         style: TextStyle(fontWeight: FontWeight.w500),
+                        controller: authController.lnameController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Your Second Name'),
@@ -259,6 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ]),
                       child: TextField(
                         style: TextStyle(fontWeight: FontWeight.w500),
+                        controller: authController.phoneController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Your NoTelephone'),
@@ -269,99 +276,102 @@ class _RegisterPageState extends State<RegisterPage> {
                   SizedBox(
                     height: 2.h,
                   ),
-                  // FadeInDown(
-                  //   delay: const Duration(milliseconds: 700),
-                  //   duration: const Duration(milliseconds: 800),
-                  //   child: const Text(
-                  //     'Email',
-                  //     style: TextStyle(
-                  //       fontSize: 16,
-                  //       fontWeight: FontWeight.w600,
-                  //     ),
-                  //   ),
-                  // ),
-                  // FadeInDown(
-                  //   delay: const Duration(milliseconds: 600),
-                  //   duration: const Duration(milliseconds: 700),
-                  //   child: Container(
-                  //     margin: EdgeInsets.symmetric(vertical: 0.8.h),
-                  //     padding:
-                  //         EdgeInsets.symmetric(horizontal: 5.w, vertical: .3.h),
-                  //     decoration: BoxDecoration(
-                  //         color:
-                  //             isFocusedEmail ? Colors.white : Color(0xFFF1F0F5),
-                  //         border:
-                  //             Border.all(width: 1, color: Color(0xFFD2D2D4)),
-                  //         borderRadius: BorderRadius.circular(12),
-                  //         boxShadow: [
-                  //           if (isFocusedEmail)
-                  //             BoxShadow(
-                  //                 color:   Color.fromRGBO(0, 170, 19, 1).withOpacity(.3),
-                  //                 blurRadius: 4.0,
-                  //                 spreadRadius: 2.0
-                  //                 // Glow Color
-                  //                 )
-                  //         ]),
-                  //     child: TextField(
-                  //       style: TextStyle(fontWeight: FontWeight.w500),
-                  //       decoration: InputDecoration(
-                  //           border: InputBorder.none, hintText: 'Your Email'),
-                  //       focusNode: focusNodeEmail,
-                  //     ),
-                  //   ),
-                  // ),
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 700),
+                    duration: const Duration(milliseconds: 800),
+                    child: const Text(
+                      'Email',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 600),
+                    duration: const Duration(milliseconds: 700),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 0.8.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: .3.h),
+                      decoration: BoxDecoration(
+                          color:
+                              isFocusedEmail ? Colors.white : Color(0xFFF1F0F5),
+                          border:
+                              Border.all(width: 1, color: Color(0xFFD2D2D4)),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            if (isFocusedEmail)
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 170, 19, 1)
+                                      .withOpacity(.3),
+                                  blurRadius: 4.0,
+                                  spreadRadius: 2.0
+                                  // Glow Color
+                                  )
+                          ]),
+                      child: TextField(
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                        controller: authController.emailController,
+                        decoration: InputDecoration(
+                            border: InputBorder.none, hintText: 'Your Email'),
+                        focusNode: focusNodeEmail,
+                      ),
+                    ),
+                  ),
                   SizedBox(
                     height: 2.h,
                   ),
-                  // FadeInDown(
-                  //   delay: const Duration(milliseconds: 500),
-                  //   duration: const Duration(milliseconds: 600),
-                  //   child: const Text(
-                  //     'Password',
-                  //     style: TextStyle(
-                  //       fontSize: 16,
-                  //       fontWeight: FontWeight.w600,
-                  //     ),
-                  //   ),
-                  // ),
-                  // FadeInDown(
-                  //   delay: const Duration(milliseconds: 400),
-                  //   duration: const Duration(milliseconds: 500),
-                  //   child: Container(
-                  //     margin: EdgeInsets.symmetric(vertical: 0.8.h),
-                  //     padding:
-                  //         EdgeInsets.symmetric(horizontal: 5.w, vertical: .3.h),
-                  //     decoration: BoxDecoration(
-                  //         color: isFocusedPassword
-                  //             ? Colors.white
-                  //             : Color(0xFFF1F0F5),
-                  //         border:
-                  //             Border.all(width: 1, color: Color(0xFFD2D2D4)),
-                  //         borderRadius: BorderRadius.circular(12),
-                  //         boxShadow: [
-                  //           if (isFocusedPassword)
-                  //             BoxShadow(
-                  //                 color:  Color.fromRGBO(0, 170, 19, 1)
-                  //                     .withOpacity(.3),
-                  //                 blurRadius: 4.0,
-                  //                 spreadRadius: 2.0
-                  //                 // Glow Color
-                  //                 )
-                  //         ]),
-                  //     child: TextField(
-                  //       style: const TextStyle(fontWeight: FontWeight.w500),
-                  //       decoration: InputDecoration(
-                  //           suffixIcon: Icon(
-                  //             Icons.visibility_off_outlined,
-                  //             color: Colors.grey,
-                  //             size: 16.sp,
-                  //           ),
-                  //           border: InputBorder.none,
-                  //           hintText: 'Password'),
-                  //       focusNode: focusNodePassword,
-                  //     ),
-                  //   ),
-                  // ),
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 600),
+                    child: const Text(
+                      'Password',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  FadeInDown(
+                    delay: const Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 0.8.h),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: .3.h),
+                      decoration: BoxDecoration(
+                          color: isFocusedPassword
+                              ? Colors.white
+                              : Color(0xFFF1F0F5),
+                          border:
+                              Border.all(width: 1, color: Color(0xFFD2D2D4)),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            if (isFocusedPassword)
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 170, 19, 1)
+                                      .withOpacity(.3),
+                                  blurRadius: 4.0,
+                                  spreadRadius: 2.0
+                                  // Glow Color
+                                  )
+                          ]),
+                      child: TextField(
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        controller: authController.passwordController,
+                        decoration: InputDecoration(
+                            suffixIcon: Icon(
+                              Icons.visibility_off_outlined,
+                              color: Colors.grey,
+                              size: 16.sp,
+                            ),
+                            border: InputBorder.none,
+                            hintText: 'Password'),
+                        focusNode: focusNodePassword,
+                      ),
+                    ),
+                  ),
                   const Expanded(
                       child: SizedBox(
                     height: 10,
@@ -374,7 +384,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed('/HomePage');
+                              authController.Register();
                             },
                             child: FadeInUp(
                                 delay: const Duration(milliseconds: 700),
