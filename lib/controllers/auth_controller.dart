@@ -24,12 +24,12 @@ class AuthController extends GetxController {
       print(emailController.text);
       print(passwordController.text);
 
-      Map body = {
-        'email': emailController.text,
-        'password': passwordController.text
-      };
+      // Map body = {
+      //   'email': emailController.text,
+      //   'password': passwordController.text
+      // };
 
-      // Map body = {'email': "test@mail.com", 'password': "12345789"};
+      Map body = {'email': "test@mail.com", 'password': "12345789"};
 
       print(jsonEncode(body));
 
