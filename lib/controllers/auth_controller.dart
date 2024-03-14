@@ -21,7 +21,8 @@ class AuthController extends GetxController {
     try {
       var url = Uri.parse(
           ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.LoginAccount);
-      print(emailController);
+      print(emailController.text);
+      print(passwordController.text);
 
       Map body = {
         'email': emailController.text,

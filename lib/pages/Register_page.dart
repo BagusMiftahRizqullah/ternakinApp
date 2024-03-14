@@ -68,11 +68,33 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(
+            height: 5.h,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 2.w,
+            ),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              FadeInDown(
+                delay: const Duration(milliseconds: 900),
+                duration: const Duration(milliseconds: 1000),
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      IconlyBroken.arrow_left,
+                      size: 3.6.h,
+                    )),
+              ),
+            ]),
+          ),
           Expanded(
               child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
-              height: 100.h,
+              height: 115.h,
               decoration: BoxDecoration(color: Colors.white),
               padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
               child: Column(
@@ -80,22 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 5.h,
-                  ),
-                  FadeInDown(
-                    delay: const Duration(milliseconds: 900),
-                    duration: const Duration(milliseconds: 1000),
-                    child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          IconlyBroken.arrow_left,
-                          size: 3.6.h,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 2.h,
+                    height: 1.h,
                   ),
                   Container(
                     child: Column(
