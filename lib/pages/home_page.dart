@@ -51,7 +51,7 @@ class _HomePage extends State<HomePage> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 32, left: 15, right: 15, bottom: 10),
+            padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
             decoration: BoxDecoration(
                 color: Color.fromRGBO(0, 170, 19, 1),
                 borderRadius: BorderRadius.only(
@@ -60,20 +60,6 @@ class _HomePage extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.dashboard,
-                      size: 38,
-                      color: Colors.white,
-                    ),
-                    Icon(Icons.notifications, size: 38, color: Colors.white),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 20),
                   width: MediaQuery.of(context).size.width,

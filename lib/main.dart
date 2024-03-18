@@ -17,7 +17,10 @@ class TernakinApp extends StatelessWidget {
     return Sizer(
         builder: (context, orientation, deviceType) => GetMaterialApp(
                 debugShowCheckedModeBanner: false,
-                theme: new ThemeData(scaffoldBackgroundColor: Colors.white),
+                title: 'Ternakin',
+                theme: new ThemeData(
+                  scaffoldBackgroundColor: Colors.white,
+                ),
                 home: const SplashPage(),
                 routes: {
                   // '/splash': (context) => const SplashPage(),

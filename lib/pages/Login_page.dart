@@ -236,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              authController.loginWithEmail();
+                              authController.loginWithEmail(context);
 
                               // Navigator.of(context).pushNamed('/BottomPage');
                             },

@@ -7,6 +7,8 @@ import 'package:ternakin/pages/home_page.dart';
 import 'package:ternakin/utils/api_endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:ternakin/widgets/bottom_page.dart';
 
 class AuthController extends GetxController {
   TextEditingController fnameController = TextEditingController();
@@ -16,7 +18,7 @@ class AuthController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future<void> loginWithEmail() async {
+  Future<void> loginWithEmail(context) async {
     var headers = {'Content-Type': 'application/json'};
     try {
       var url = Uri.parse(
@@ -49,9 +51,15 @@ class AuthController extends GetxController {
 
         emailController.clear();
         passwordController.clear();
-        Get.off(const HomePage());
+        Get.off(const BottomPage());
       } else {
-        throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          text: jsonDecode(response.body)["message"]["en"] ??
+              "Unknown Error Occured",
+        );
+        // throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
       }
     } catch (error) {
       print(error);

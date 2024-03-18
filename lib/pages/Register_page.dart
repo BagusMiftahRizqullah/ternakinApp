@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
               child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
-              height: 115.h,
+              height: 100.h,
               decoration: BoxDecoration(color: Colors.white),
               padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
               child: Column(
@@ -379,10 +379,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  const Expanded(
-                      child: SizedBox(
-                    height: 10,
-                  )),
+                  SizedBox(
+                    height: 4.h,
+                  ),
                   FadeInUp(
                     delay: const Duration(milliseconds: 600),
                     duration: const Duration(milliseconds: 700),
@@ -413,6 +412,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       ],
                     ),
                   ),
+                  const Expanded(
+                      child: SizedBox(
+                    height: 10,
+                  )),
                   FadeInUp(
                     delay: const Duration(milliseconds: 800),
                     duration: const Duration(milliseconds: 900),
