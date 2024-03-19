@@ -42,26 +42,28 @@ class _BottomPageState extends State<BottomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color.fromRGBO(0, 170, 19, 1),
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.dashboard,
-              size: 38,
-              color: Colors.white,
-            ),
-          ),
-          actions: [
-            IconButton(
+      appBar: _selectedIndex != 0
+          ? null
+          : AppBar(
+              elevation: 0,
+              backgroundColor: Color.fromRGBO(0, 170, 19, 1),
+              leading: IconButton(
                 onPressed: () {},
                 icon: Icon(
-                  Icons.notifications,
+                  Icons.dashboard,
                   size: 38,
                   color: Colors.white,
-                ))
-          ]),
+                ),
+              ),
+              actions: [
+                  IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.notifications,
+                        size: 38,
+                        color: Colors.white,
+                      ))
+                ]),
       body: Center(
         child: _pages.elementAt(_selectedIndex), //New
       ),

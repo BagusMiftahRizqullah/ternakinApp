@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:ternakin/pages/Login_page.dart';
 import 'package:ternakin/pages/home_page.dart';
@@ -19,6 +20,8 @@ class AuthController extends GetxController {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> loginWithEmail(context) async {
+    EasyLoading.show(status: 'Please wait...');
+
     var headers = {'Content-Type': 'application/json'};
     try {
       var url = Uri.parse(
@@ -26,33 +29,41 @@ class AuthController extends GetxController {
       print(emailController.text);
       print(passwordController.text);
 
-      // Map body = {
-      //   'email': emailController.text,
-      //   'password': passwordController.text
-      // };
+      Map body = {
+        'email': emailController.text,
+        'password': passwordController.text
+      };
 
-      Map body = {'email': "test@mail.com", 'password': "12345789"};
+      // Map body = {'email': "test@mail.com", 'password': "12345789"};
 
-      print(jsonEncode(body));
+      // print(jsonEncode(body));
 
-      print(url);
+      // print(url);
       http.Response response =
           await http.post(url, body: jsonEncode(body), headers: headers);
 
-      print(response.statusCode);
-      print(response.body);
+      // print(response.statusCode);
+      // print(response.body);
 
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
         var token = json['data']['token'];
-        print(token['token']);
+        print(json);
+        Map dataProfile = {
+          'fname': json['data']['detail']['fname'],
+          'lname': json['data']['detail']['lname'],
+          'email': json['data']['email'],
+          'phone': json['data']['phone'],
+        };
         final SharedPreferences? prefs = await _prefs;
         await prefs?.setString('token', token['token']);
-
+        await prefs?.setString('profile', jsonEncode(dataProfile));
         emailController.clear();
         passwordController.clear();
+        EasyLoading.dismiss();
         Get.off(const BottomPage());
       } else {
+        EasyLoading.dismiss();
         QuickAlert.show(
           context: context,
           type: QuickAlertType.error,
@@ -63,10 +74,12 @@ class AuthController extends GetxController {
       }
     } catch (error) {
       print(error);
+      EasyLoading.dismiss();
     }
   }
 
   Future<void> Register() async {
+    EasyLoading.show(status: 'Please wait...');
     var headers = {'Content-Type': 'application/json'};
     try {
       var url = Uri.parse(
@@ -93,14 +106,18 @@ class AuthController extends GetxController {
           lnameController.clear();
           phoneController.clear();
           passwordController.clear();
+          EasyLoading.dismiss();
           Get.off(const LoginPage());
         } else {
+          EasyLoading.dismiss();
           throw jsonDecode(response.body)['message'];
         }
       } else {
+        EasyLoading.dismiss();
         throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
       }
     } catch (error) {
+      EasyLoading.dismiss();
       print(error);
     }
   }

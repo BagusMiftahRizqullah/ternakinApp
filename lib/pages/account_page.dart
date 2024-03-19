@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import 'package:ternakin/widgets/bottom_page.dart';
+import 'package:get/get.dart';
+import 'package:ternakin/pages/Login_page.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -9,244 +15,237 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPage extends State<AccountPage> {
-  List menuNames = [
-    "Titipin Ternak",
-    "Daging Sapi",
-    "Daging Kambing",
-    "Daging Ayam",
-    "Cicil Sapi",
-    "Cicil Kambing"
-  ];
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  String nameController = "";
+  String addresController = "";
+  String phoneController = "";
+  String emailController = "";
 
-  List<Color> animalColors = [
-    Color(0xFFFFCF2F),
-    Color.fromARGB(255, 12, 209, 41),
-    Color.fromARGB(255, 8, 235, 223),
-    Color.fromARGB(255, 232, 113, 210),
-    Color.fromARGB(255, 61, 149, 231),
-    Color.fromARGB(255, 238, 80, 85),
-  ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadDataProfile();
+  }
 
-  List<Icon> animalIcons = [
-    Icon(Icons.category, color: Colors.white, size: 30),
-    Icon(Icons.video_library, color: Colors.white, size: 30),
-    Icon(Icons.assessment, color: Colors.white, size: 30),
-    Icon(Icons.store, color: Colors.white, size: 30),
-    Icon(Icons.play_circle_fill, color: Colors.white, size: 30),
-    Icon(Icons.emoji_events, color: Colors.white, size: 30),
-  ];
+  Future<void> logout() async {
+    final SharedPreferences? prefs = await _prefs;
+    await prefs?.clear();
+    Get.offAll(LoginPage());
+  }
 
-  List imglist = [
-    "ternakin_logo",
-    "books",
-    "C#",
-    "Flutter",
-    "Python",
-    "ReactNative",
-  ];
+  loadDataProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map data = await jsonDecode(prefs.getString('profile') ?? '');
+    print(data);
 
-  int _selectedIndex = 0; //New
+    if (data == null) {
+      setState(() {
+        nameController = '';
+        addresController = '';
+        phoneController = '';
+        emailController = '';
+      });
+      return;
+    }
 
-  void _onItemTapped(int index) {
+    nameController = data['fname'] + " " + data['lname'];
+    addresController = data['address'] ?? '';
+    phoneController = data['phone'] ?? '';
+    emailController = data['email'] ?? '';
+
     setState(() {
-      _selectedIndex = index;
+      nameController = nameController;
+      addresController = addresController;
+      phoneController = phoneController;
+      emailController = emailController;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(0, 170, 19, 1),
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.dashboard,
-                      size: 38,
-                      color: Colors.white,
-                    ),
-                    Icon(Icons.notifications, size: 38, color: Colors.white),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 5, bottom: 20),
-                  width: MediaQuery.of(context).size.width,
-                  height: 55,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Search here.....",
-                        hintStyle: TextStyle(
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          size: 25,
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-              padding: EdgeInsets.only(top: 20, left: 15, right: 15),
-              child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: Get.height * 0.3,
+              child: Stack(
                 children: [
-                  GridView.builder(
-                    itemCount: menuNames.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, childAspectRatio: 1.1),
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Container(
-                            height: 42,
-                            width: 42,
-                            decoration: BoxDecoration(
-                                color: animalColors[index],
-                                shape: BoxShape.circle),
-                            child: Center(
-                              child: animalIcons[index],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            menuNames[index],
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.6),
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(0, 170, 19, 1),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20))),
-                      child: Column(children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Ternakin",
-                            )
-                          ],
-                        )
-                      ])),
-                  // TITIP TERNAK
-                  SizedBox(
-                    height: 23,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Titip Ternak",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(67, 147, 108, 1),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  GridView.builder(
-                    itemCount: imglist.length,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio:
-                          (MediaQuery.of(context).size.height - 50 - 25) /
-                              (4 * 240),
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: InkWell(
                         onTap: () {},
                         child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white70,
+                          width: 120,
+                          height: 120,
+                          margin: EdgeInsets.only(bottom: 20),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Color(0xffD6D6D6)),
+                          child: Center(
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              size: 40,
+                              color: Colors.white,
                             ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Image.asset(
-                                    "images/${imglist[index]}.png",
-                                    width: 100,
-                                    height: 100,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  imglist[index],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black.withOpacity(0.6),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "55 Video",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black.withOpacity(0.5),
-                                  ),
-                                ),
-                              ],
-                            )),
-                      );
-                    },
+                          ),
+                        )),
                   ),
                 ],
-              ))
-        ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 23),
+              child: Form(
+                child: Column(
+                  children: [
+                    Row(children: [
+                      Icon(Icons.person, size: 32),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Text(
+                        nameController,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ]),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Row(children: [
+                      Icon(Icons.home_outlined, size: 32),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Text(addresController),
+                    ]),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Row(children: [
+                      Icon(Icons.phone, size: 32),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Text("+" + phoneController),
+                    ]),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Row(children: [
+                      Icon(Icons.email, size: 32),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      Text(emailController),
+                    ]),
+                    const SizedBox(
+                      height: 180,
+                    ),
+                    FadeInUp(
+                      delay: const Duration(milliseconds: 600),
+                      duration: const Duration(milliseconds: 700),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                logout();
+                              },
+                              child: FadeInUp(
+                                  delay: const Duration(milliseconds: 700),
+                                  duration: const Duration(milliseconds: 800),
+                                  child: Text('Log Out')),
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Satoshi'),
+                                  backgroundColor:
+                                      Color.fromRGBO(205, 30, 30, 1),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  padding: EdgeInsets.symmetric(vertical: 16)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextFieldWidget(String title, IconData iconData,
+      TextEditingController controller, Function validator,
+      {Function? onTap, bool readOnly = false}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+        ),
+        const SizedBox(
+          height: 6,
+        ),
+        Container(
+          width: Get.width,
+          // height: 50,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    spreadRadius: 1,
+                    blurRadius: 1)
+              ],
+              borderRadius: BorderRadius.circular(8)),
+          child: TextFormField(
+            readOnly: readOnly,
+            onTap: () => onTap!(),
+            validator: (input) => validator(input),
+            controller: controller,
+            decoration: InputDecoration(
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  iconData,
+                ),
+              ),
+              border: InputBorder.none,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget greenButton(String title, Function onPressed) {
+    return MaterialButton(
+      minWidth: Get.width,
+      height: 50,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      onPressed: () => onPressed(),
+      child: Text(
+        title,
       ),
     );
   }
