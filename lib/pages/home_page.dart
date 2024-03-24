@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:ternakin/widgets/bottom_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -122,26 +123,51 @@ class _HomePage extends State<HomePage> {
                       );
                     },
                   ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(0, 170, 19, 1),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20))),
-                      child: Column(children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Ternakin",
+                  InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/tt_category');
+                      },
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 170, 19, 1),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20))),
+                          child: Row(children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "images/ternakin_logo.png",
+                                  height: 100,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text("Ayo mulai berternak",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    )),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Icon(
+                                  IconlyBroken.arrow_right_circle,
+                                  color: Colors.white,
+                                  size: 53,
+                                )
+                              ],
                             )
-                          ],
-                        )
-                      ])),
+                          ]))),
                   // TITIP TERNAK
                   SizedBox(
                     height: 23,
@@ -199,7 +225,7 @@ class _HomePage extends State<HomePage> {
                                     height: 100,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 4),
                                 Text(
                                   imglist[index],
                                   style: TextStyle(

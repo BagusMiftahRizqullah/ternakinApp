@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:ternakin/pages/Login_page.dart';
 import 'package:ternakin/pages/Order_page.dart';
 import 'package:ternakin/pages/Register_page.dart';
+import 'package:ternakin/pages/tt_categorie_selection.dart';
 import 'package:ternakin/widgets/bottom_page.dart';
 import 'package:ternakin/pages/home_page.dart';
 import 'package:ternakin/pages/splash_page.dart';
@@ -49,6 +50,7 @@ class TernakinApp extends StatelessWidget {
                   '/RegisterPage': (context) => const RegisterPage(),
                   '/OrderPage': (context) => const OrderPage(),
                   '/BottomPage': (context) => const BottomPage(),
+                  '/tt_category': (context) => const TTCategorieSelectionPage(),
                 }));
   }
 }

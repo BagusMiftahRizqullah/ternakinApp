@@ -8,7 +8,6 @@ import 'package:iconly/iconly.dart';
 import 'package:sizer/sizer.dart';
 import 'package:ternakin/models/post.dart';
 import 'package:ternakin/pages/Register_page.dart';
-import 'package:http/http.dart' as http;
 import 'package:ternakin/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 

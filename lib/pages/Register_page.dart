@@ -94,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
               child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
-              height: 100.h,
+              height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(color: Colors.white),
               padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
               child: Column(
