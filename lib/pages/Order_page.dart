@@ -36,7 +36,7 @@ class _OrderPage extends State<OrderPage> {
   ];
 
   List imglist = [
-    "ternakin_logo",
+    "berternak_logo",
     "books",
     "C#",
     "Flutter",
@@ -150,7 +150,7 @@ class _OrderPage extends State<OrderPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Ternakin",
+                              "berternak",
                             )
                           ],
                         )

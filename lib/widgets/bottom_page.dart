@@ -1,9 +1,9 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ternakin/pages/Home_page.dart';
-import 'package:ternakin/pages/welcome_page.dart';
-import 'package:ternakin/pages/account_page.dart';
+import 'package:berternak/pages/Home_page.dart';
+import 'package:berternak/pages/welcome_page.dart';
+import 'package:berternak/pages/account_page.dart';
 
 class BottomPage extends StatefulWidget {
   const BottomPage({super.key});

@@ -1,8 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ternakin/pages/Home_page.dart';
-import 'package:ternakin/pages/welcome_page.dart';
+import 'package:berternak/pages/Home_page.dart';
+import 'package:berternak/pages/welcome_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -43,7 +43,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Column(
         children: [
           Image.asset(
-            "images/ternakin_logo.png",
+            "images/berternak_logo.png",
             height: 100,
           ),
           SizedBox(

@@ -36,7 +36,7 @@ class _NotifPage extends State<NotifPage> {
   ];
 
   List imglist = [
-    "ternakin_logo",
+    "berternak_logo",
     "books",
     "C#",
     "Flutter",
@@ -150,7 +150,7 @@ class _NotifPage extends State<NotifPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Ternakin",
+                              "berternak",
                             )
                           ],
                         )

@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
-import 'package:ternakin/controllers/auth_controller.dart';
+import 'package:berternak/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           delay: const Duration(milliseconds: 800),
                           duration: const Duration(milliseconds: 900),
                           child: Text(
-                            'Let\'s Sign up for Ternakin',
+                            'Let\'s Sign up',
                             style: TextStyle(
                               fontSize: 25.sp,
                               fontWeight: FontWeight.w600,
@@ -126,7 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           delay: const Duration(milliseconds: 600),
                           duration: const Duration(milliseconds: 700),
                           child: Text(
-                            'Welcome to Ternakin',
+                            'Welcome to berternak',
                             style: TextStyle(
                               fontSize: 25.sp,
                               fontWeight: FontWeight.w400,

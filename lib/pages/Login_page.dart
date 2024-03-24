@@ -6,9 +6,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ternakin/models/post.dart';
-import 'package:ternakin/pages/Register_page.dart';
-import 'package:ternakin/controllers/auth_controller.dart';
+import 'package:berternak/models/post.dart';
+import 'package:berternak/pages/Register_page.dart';
+import 'package:berternak/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {

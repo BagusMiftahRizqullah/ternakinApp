@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:ternakin/widgets/bottom_page.dart';
+import 'package:berternak/widgets/bottom_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,7 +38,7 @@ class _HomePage extends State<HomePage> {
   ];
 
   List imglist = [
-    "ternakin_logo",
+    "berternak_logo",
     "books",
     "C#",
     "Flutter",
@@ -145,7 +145,7 @@ class _HomePage extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  "images/ternakin_logo.png",
+                                  "images/berternak_logo.png",
                                   height: 100,
                                 ),
                                 SizedBox(

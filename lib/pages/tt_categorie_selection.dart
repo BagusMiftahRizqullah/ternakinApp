@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:sizer/sizer.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:ternakin/controllers/berternak_controller.dart';
+import 'package:berternak/controllers/berternak_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TTCategorieSelectionPage extends StatefulWidget {
@@ -17,9 +17,6 @@ class TTCategorieSelectionPage extends StatefulWidget {
 
 class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
   BerternakController berternakController = Get.put(BerternakController());
-  final TextEditingController _controllerSearch =
-      new TextEditingController(text: '');
-
   List CategorieBertenak = [];
 
   @override
@@ -32,14 +29,9 @@ class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
 
   loadDataCategoriesBerternak() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    List data = await jsonDecode(prefs.getString('categories_berternak') ?? '');
-    print(data);
-
-    if (data == null) {
-      setState(() {
-        CategorieBertenak = [];
-      });
-    }
+    List data = prefs.getString('categories_berternak') == null
+        ? []
+        : jsonDecode(prefs.getString('categories_berternak')!);
 
     setState(() {
       CategorieBertenak = data;
@@ -47,7 +39,7 @@ class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
   }
 
   List imglist = [
-    "ternakin_logo",
+    "berternak_logo",
     "books",
     "C#",
     "Flutter",
@@ -56,7 +48,6 @@ class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
   ];
 
   void _handleSearch(String input) {
-    print(input);
     if (input.isEmpty) {
       loadDataCategoriesBerternak();
     } else {
@@ -136,7 +127,7 @@ class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
                         FadeInDown(
                             child: Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 1, left: 15, right: 15, bottom: 15),
+                                    left: 15, right: 15, bottom: 15),
                                 child: Column(
                                   children: [
                                     GridView.builder(
@@ -175,13 +166,14 @@ class _TTCategorieSelectionPage extends State<TTCategorieSelectionPage> {
                                               child: Column(
                                                 children: [
                                                   Padding(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Image.asset(
-                                                      "images/${imglist[index]}.png",
-                                                      width: 100,
-                                                      height: 100,
-                                                    ),
-                                                  ),
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      child: Image.network(
+                                                        CategorieBertenak?[
+                                                            index]?['path'],
+                                                        width: 100,
+                                                        height: 100,
+                                                      )),
                                                   SizedBox(height: 4),
                                                   Text(
                                                     CategorieBertenak?[index]

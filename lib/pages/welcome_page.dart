@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ternakin/pages/Home_page.dart';
-import 'package:ternakin/pages/Login_page.dart';
+import 'package:berternak/pages/Home_page.dart';
+import 'package:berternak/pages/Login_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -132,7 +132,7 @@ class Welcome {
 
 final List<Welcome> welcome_data = [
   Welcome(
-    image: "images/ternakin_logo.png",
+    image: "images/berternak_logo.png",
     title: "Mari membeli ternak sekarang dan percayakan pada kami",
     description:
         "Disini kamu akan menemukan pelayanan yang ramah dan amanah sesuai dengan kebutuhanmu.",

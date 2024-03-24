@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:ternakin/pages/Login_page.dart';
-import 'package:ternakin/pages/Order_page.dart';
-import 'package:ternakin/pages/Register_page.dart';
-import 'package:ternakin/pages/tt_categorie_selection.dart';
-import 'package:ternakin/widgets/bottom_page.dart';
-import 'package:ternakin/pages/home_page.dart';
-import 'package:ternakin/pages/splash_page.dart';
-import 'package:ternakin/pages/welcome_page.dart';
+import 'package:berternak/pages/Login_page.dart';
+import 'package:berternak/pages/Order_page.dart';
+import 'package:berternak/pages/Register_page.dart';
+import 'package:berternak/pages/tt_categorie_selection.dart';
+import 'package:berternak/widgets/bottom_page.dart';
+import 'package:berternak/pages/home_page.dart';
+import 'package:berternak/pages/splash_page.dart';
+import 'package:berternak/pages/welcome_page.dart';
 
 void main() {
-  runApp(TernakinApp());
+  runApp(berternakApp());
   configLoading();
 }
 
@@ -30,14 +30,14 @@ void configLoading() {
     ..backgroundColor = Colors.transparent;
 }
 
-class TernakinApp extends StatelessWidget {
+class berternakApp extends StatelessWidget {
   @override
   Widget build(BuildContext contex) {
     return Sizer(
         builder: (context, orientation, deviceType) => GetMaterialApp(
                 builder: EasyLoading.init(),
                 debugShowCheckedModeBanner: false,
-                title: 'Ternakin',
+                title: 'berternak',
                 theme: new ThemeData(
                   scaffoldBackgroundColor: Colors.white,
                 ),

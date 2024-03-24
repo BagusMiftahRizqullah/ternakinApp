@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "ternakin" "\0"
+            VALUE "FileDescription", "berternak" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ternakin" "\0"
+            VALUE "InternalName", "berternak" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ternakin.exe" "\0"
-            VALUE "ProductName", "ternakin" "\0"
+            VALUE "OriginalFilename", "berternak.exe" "\0"
+            VALUE "ProductName", "berternak" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

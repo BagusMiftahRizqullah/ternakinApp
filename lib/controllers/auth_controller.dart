@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
-import 'package:ternakin/pages/Login_page.dart';
-import 'package:ternakin/pages/home_page.dart';
-import 'package:ternakin/utils/api_endpoints.dart';
+import 'package:berternak/pages/Login_page.dart';
+import 'package:berternak/pages/home_page.dart';
+import 'package:berternak/utils/api_endpoints.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:ternakin/widgets/bottom_page.dart';
+import 'package:berternak/widgets/bottom_page.dart';
 
 class AuthController extends GetxController {
   TextEditingController fnameController = TextEditingController();
