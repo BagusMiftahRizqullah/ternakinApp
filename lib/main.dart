@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:berternak/pages/Login_page.dart';
@@ -31,6 +34,28 @@ void configLoading() {
 }
 
 class berternakApp extends StatelessWidget {
+  String mytoken = '';
+  berternakApp({super.key});
+
+  getStringValuesSF() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString('token') ?? '';
+    // print(stringValue);
+
+    if (stringValue == '') {
+      // setState(() {
+      //   mytoken = '';
+      // });
+      return false;
+    } else {
+      // setState(() {
+      //   mytoken = stringValue;
+      // });
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext contex) {
     return Sizer(
@@ -38,10 +63,12 @@ class berternakApp extends StatelessWidget {
                 builder: EasyLoading.init(),
                 debugShowCheckedModeBanner: false,
                 title: 'berternak',
-                theme: new ThemeData(
+                theme: ThemeData(
                   scaffoldBackgroundColor: Colors.white,
                 ),
-                home: const SplashPage(),
+                home: getStringValuesSF() != ''
+                    ? const BottomPage()
+                    : const SplashPage(),
                 routes: {
                   // '/splash': (context) => const SplashPage(),
                   '/WelcomePage': (context) => const WelcomePage(),
@@ -53,4 +80,6 @@ class berternakApp extends StatelessWidget {
                   '/tt_category': (context) => const TTCategorieSelectionPage(),
                 }));
   }
+
+  void setState(Null Function() param0) {}
 }

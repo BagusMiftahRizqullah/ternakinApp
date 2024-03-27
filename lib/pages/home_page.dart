@@ -146,7 +146,7 @@ class _HomePage extends State<HomePage> {
                               children: [
                                 Image.asset(
                                   "images/berternak_logo.png",
-                                  height: 100,
+                                  height: 80,
                                 ),
                                 SizedBox(
                                   width: 10,
